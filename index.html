@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light Reflection Lab</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="lab-container">
+        <h1>Light Reflection Lab</h1>
+        
+        <div class="simulation-area">
+            <!-- Flashlight -->
+            <div class="flashlight"></div>
+            
+            <!-- Incoming Light Beams (7 colored arrows) -->
+            <div class="light-beam incoming red" id="in-red"></div>
+            <div class="light-beam incoming orange" id="in-orange"></div>
+            <div class="light-beam incoming yellow" id="in-yellow"></div>
+            <div class="light-beam incoming green" id="in-green"></div>
+            <div class="light-beam incoming blue" id="in-blue"></div>
+            <div class="light-beam incoming indigo" id="in-indigo"></div>
+            <div class="light-beam incoming violet" id="in-violet"></div>
+            
+            <!-- Surface -->
+            <div class="surface"></div>
+            
+            <!-- Reflected Light Beams (7 colored arrows) -->
+            <div class="light-beam reflected red" id="out-red"></div>
+            <div class="light-beam reflected orange" id="out-orange"></div>
+            <div class="light-beam reflected yellow" id="out-yellow"></div>
+            <div class="light-beam reflected green" id="out-green"></div>
+            <div class="light-beam reflected blue" id="out-blue"></div>
+            <div class="light-beam reflected indigo" id="out-indigo"></div>
+            <div class="light-beam reflected violet" id="out-violet"></div>
+        </div>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label class="toggle-label red">
+                    <input type="checkbox" class="color-toggle" id="red-toggle" checked>
+                    <span class="toggle-slider"></span>
+                    <span>Red</span>
+                </label>
+                
+                <label class="toggle-label orange">
+                    <input type="checkbox" class="color-toggle" id="orange-toggle" checked>
+                    <span class="toggle-slider"></span>
+                    <span>Orange</span>
+                </label>
+                
+                <label class="toggle-label yellow">
+                    <input type="checkbox" class="color-toggle" id="yellow-toggle" checked>
+                    <span class="toggle-slider"></span>
+                    <span>Yellow</span>
+                </label>
+            </div>
+            
+            <div class="control-group">
+                <label class="toggle-label green">
+                    <input type="checkbox" class="color-toggle" id="green-toggle" checked>
+                    <span class="toggle-slider"></span>
+                    <span>Green</span>
+                </label>
+                
+                <label class="toggle-label blue">
+                    <input type="checkbox" class="color-toggle" id="blue-toggle" checked>
+                    <span class="toggle-slider"></span>
+                    <span>Blue</span>
+                </label>
+            </div>
+            
+            <div class="control-group">
+                <label class="toggle-label indigo">
+                    <input type="checkbox" class="color-toggle" id="indigo-toggle" checked>
+                    <span class="toggle-slider"></span>
+                    <span>Indigo</span>
+                </label>
+                
+                <label class="toggle-label violet">
+                    <input type="checkbox" class="color-toggle" id="violet-toggle" checked>
+                    <span class="toggle-slider"></span>
+                    <span>Violet</span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="result-display" id="result-display">
+            All colors reflected (White)
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

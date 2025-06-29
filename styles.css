@@ -1,0 +1,302 @@
+
+/* Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000000;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.lab-container {
+    width: 100%;
+    max-width: 800px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+/* Simulation Area */
+.simulation-area {
+    position: relative;
+    height: 500px;
+    margin-bottom: 40px;
+}
+
+/* Flashlight Container */
+.flashlight-container {
+    position: absolute;
+    top: 0;
+    left: 10%;
+    display: flex;
+    gap: 15px;
+    z-index: 10;
+}
+
+/* Individual Flashlights */
+.flashlight {
+    width: 90px;
+    height: 100px;
+    background: #444;
+    border-radius: 15px 15px 0 0;
+    position: relative;
+}
+
+.flashlight::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 90px;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.8) 0%, transparent 70%);
+}
+
+/* Light Beams */
+.light-beam {
+    position: absolute;
+    height: 2px;
+    transform-origin: left center;
+    transition: all 0.3s ease;
+}
+
+/* PARALLEL INCOMING BEAMS */
+.light-beam.incoming {
+    top: 200px;
+    left: var(--beam-pos);
+    width: 250px;
+    transform: rotate(40deg); /* Same angle for all incoming beams */
+    opacity: 0.8;
+}
+
+/* DIAGONAL REFLECTED BEAMS (UP-RIGHT) */
+.light-beam.reflected {
+    top: 350px;
+    left: var(--reflect-pos);
+    width: 250px;
+    transform: rotate(-40deg); /* Diagonal kanan atas */
+    opacity: 0;
+}
+
+/* Beam Positions */
+#in-red, #out-red { 
+    --beam-pos: 26%;
+    --reflect-pos: 48%;
+}
+#in-orange, #out-orange { 
+    --beam-pos: 28%;
+    --reflect-pos: 50%;
+}
+#in-yellow, #out-yellow { 
+    --beam-pos: 30%;
+    --reflect-pos: 52%;
+}
+#in-green, #out-green { 
+    --beam-pos: 32%;
+    --reflect-pos: 54%;
+}
+#in-blue, #out-blue { 
+    --beam-pos: 34%;
+    --reflect-pos: 56%;
+}
+#in-indigo, #out-indigo { 
+    --beam-pos: 36%;
+    --reflect-pos: 58%;
+}
+#in-violet, #out-violet { 
+    --beam-pos: 38%;
+    --reflect-pos: 60%;
+}
+
+/* Color Classes */
+.light-beam.red { background-color: #ff0000; box-shadow: 0 0 10px #ff0000; }
+.light-beam.orange { background-color: #ffa500; box-shadow: 0 0 10px #ffa500; }
+.light-beam.yellow { background-color: #ffff00; box-shadow: 0 0 10px #ffff00; }
+.light-beam.green { background-color: #00ff00; box-shadow: 0 0 10px #00ff00; }
+.light-beam.blue { background-color: #0000ff; box-shadow: 0 0 10px #0000ff; }
+.light-beam.indigo { background-color: #4b0082; box-shadow: 0 0 10px #4b0082; }
+.light-beam.violet { background-color: #9400d3; box-shadow: 0 0 10px #9400d3; }
+
+/* Surface */
+.surface {
+    position: absolute;
+    top: 350px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 350px;
+    height: 15px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 25px rgba(255,255,255,0.7);
+    transition: all 0.5s ease;
+}
+
+/* Surface Color States */
+.surface.red { background-color: #ff0000; box-shadow: 0 0 25px #ff0000; }
+.surface.orange { background-color: #ffa500; box-shadow: 0 0 25px #ffa500; }
+.surface.yellow { background-color: #ffff00; box-shadow: 0 0 25px #ffff00; }
+.surface.green { background-color: #00ff00; box-shadow: 0 0 25px #00ff00; }
+.surface.blue { background-color: #0000ff; box-shadow: 0 0 25px #0000ff; }
+.surface.indigo { background-color: #4b0082; box-shadow: 0 0 25px #4b0082; }
+.surface.violet { background-color: #9400d3; box-shadow: 0 0 25px #9400d3; }
+.surface.white { background-color: #ffffff; box-shadow: 0 0 25px #ffffff; }
+.surface.black { background-color: #000000; box-shadow: 0 0 25px #000000; }
+
+/* Controls */
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.control-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 20px;
+    transition: background-color 0.2s;
+}
+
+.toggle-label:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+.color-toggle {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    background-color: #555;
+    border-radius: 24px;
+    transition: background-color 0.3s;
+}
+
+.toggle-slider::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.color-toggle:checked + .toggle-slider {
+    background-color: #4CAF50;
+}
+
+.color-toggle:checked + .toggle-slider::before {
+    transform: translateX(26px);
+}
+
+/* Color label styles */
+.toggle-label.red span:last-child { color: #ff6666; }
+.toggle-label.orange span:last-child { color: #ffb366; }
+.toggle-label.yellow span:last-child { color: #ffff66; }
+.toggle-label.green span:last-child { color: #66ff66; }
+.toggle-label.blue span:last-child { color: #6666ff; }
+.toggle-label.indigo span:last-child { color: #9966ff; }
+.toggle-label.violet span:last-child { color: #cc99ff; }
+
+/* Result Display */
+.result-display {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.1rem;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .light-beam.incoming {
+        width: 280px;
+    }
+    .light-beam.reflected {
+        width: 200px;
+    }
+    .surface {
+        width: 300px;
+    }
+    .control-group {
+        gap: 15px;
+    }
+    .flashlight-container {
+        gap: 10px;
+        left: 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+    .light-beam.incoming {
+        width: 200px;
+    }
+    .light-beam.reflected {
+        width: 150px;
+    }
+    .surface {
+        width: 250px;
+    }
+    .toggle-label {
+        padding: 6px 8px;
+    }
+    .toggle-slider {
+        width: 40px;
+        height: 20px;
+    }
+    .toggle-slider::before {
+        width: 14px;
+        height: 14px;
+    }
+    .color-toggle:checked + .toggle-slider::before {
+        transform: translateX(20px);
+    }
+    .flashlight {
+        width: 20px;
+        height: 40px;
+    }
+    .flashlight::before {
+        width: 30px;
+        height: 15px;
+    }
+}
